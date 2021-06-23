@@ -1,0 +1,32 @@
+<header>
+  <p-menubar>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 (click)="toggleSideBar()">
+        <img src="../../../../assets/images/logo_header.png" alt="" title="" />
+      </h1>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          User Name
+          <img
+            class="img-profile"
+            src="../../../../assets/59566329_2195377903850587_6023771841154252800_n.jpg"
+          />
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Profile</button>
+          <button mat-menu-item (click)="logOut()">Logout</button>
+        </mat-menu>
+        <p-dropdown
+          [options]="langs"
+          [(ngModel)]="selectedLang"
+          optionLabel="lang"
+          optionValue="value"
+          optionLabel="lang"
+          (onChange)="onChangeLanguage()"
+        ></p-dropdown>
+      
+      </div>
+      
+    </div>
+  </p-menubar>
+</header>

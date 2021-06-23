@@ -1,0 +1,15 @@
+form {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: rgb(204 204 204) 0px 1px 5px;
+  border-radius: 10px;
+  font-family: $arabic-font-family;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.full-width-field {
+  width: 100%;
+}

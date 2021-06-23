@@ -1,0 +1,23 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">tables List</h3>
+  </div>
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['../add',0,id]">new table</a>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let table of tables; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{table.Name}}</td>
+         <td><a [routerLink]="['../Edit',table.Id]">Edit</a></td>
+      </tr>
+    </tbody>
+</table>
+</div>

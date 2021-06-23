@@ -1,0 +1,174 @@
+<div class="container mt-5">
+    <h2>{{header}}</h2>
+    <form class="form-horizontal" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+        <div class="row mt-5">
+          <div class="col-md-6">
+            <label class="control-label col-md-3" for="Code">Code:</label>
+            <div class="col-md-10">
+              <input
+                 type="text"
+                 required
+                 class="form-control"
+                 name="Code"
+                 [(ngModel)]="request.Code"
+                 #codeInput="ngModel"
+                 [disabled] = "id!='0'"
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="control-label col-md-3" for="ArabicName">Arabic Name:</label>
+            <div class="col-md-10">
+              <input
+               type="text"
+               required
+               class="form-control"
+               name="ArabicName"
+               [(ngModel)]="request.ArabicName"
+               #ArabicNameInput="ngModel"
+              >
+              <div *ngIf="ArabicNameInput.errors &&(ArabicNameInput.touched || ArabicNameInput.dirty)">
+                  <span style="color: #f00;" [hidden]="!ArabicNameInput.errors.required">this filed is required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+              <label class="control-label col-md-3" for="LatinName">Latin Name:</label>
+              <div class="col-md-10">
+                <input
+                 type="text"
+                 required
+                 class="form-control"
+                 name="LatinName"
+                 [(ngModel)]="request.LatinName"
+                 #LatinNameInput="ngModel"
+                >
+                <div *ngIf="LatinNameInput.errors &&(LatinNameInput.touched || LatinNameInput.dirty)">
+                    <span style="color: #f00;" [hidden]="!LatinNameInput.errors.required">this filed is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label col-md-3" for="">Phone:</label>
+              <div class="col-md-10">
+                <select
+                required
+                class="form-control col-md-4 mr-4"
+                style="display: inline-block;"
+                name="selectCountryCode" class="form-control" [(ngModel)]="request.CountryCode"
+                >
+                  <option
+                    value="{{countryCode.Country_Code}}"
+                    *ngFor="let countryCode of countryCodes; let i=index">{{countryCode.CountryName}}({{countryCode.Country_Code}})
+                  </option>
+                </select>
+
+                <input
+                 type="text"
+                 placeholder="123456789"
+                 style="display: inline-block;"
+                 required
+                 class="form-control col-md-6"
+                 name="Phone"
+                 [(ngModel)]="request.Phone"
+                 #PhoneInput="ngModel"
+                >
+                <div *ngIf="PhoneInput.errors &&(PhoneInput.touched || PhoneInput.dirty)">
+                    <span style="color: #f00;" [hidden]="!PhoneInput.errors.required">this filed is required</span>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-6">
+            <label class="control-label col-md-3" for="Email">Email:</label>
+            <div class="col-md-10">
+              <input
+               type="email"
+               placeholder="customer@example.com"
+               required
+               class="form-control"
+               name="Email"
+               [(ngModel)]="request.Email"
+               #EmailInput="ngModel"
+              >
+              <div *ngIf="EmailInput.errors &&(EmailInput.touched || EmailInput.dirty)">
+                  <span style="color: #f00;" [hidden]="!EmailInput.errors.required">this filed is required</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="control-label col-md-3" for="Status">Status:</label>
+            <div class="col-md-10">
+              <select name="selectStatus" required class="form-control" [(ngModel)]="request.Status">
+                <option></option>
+                <option value="0">Inactive</option>
+                <option value="1">Active</option>
+              </select>
+            </div>
+
+        </div>
+      </div>
+        <div class="row mt-5">
+          <div class="col-md-6">
+              <label class="control-label col-md-3" for="Gender"  >Gender:</label>
+              <div class="col-md-10">
+                <select name="selectGender" required class="form-control" [(ngModel)]="request.Gender" >
+                <option [value]="0">Male</option>
+                <option [value]="1">Female</option>
+                </select>
+              </div>
+
+          </div>
+          <div class="col-md-6">
+            <label class="control-label col-md-3" for="Address">Address:</label>
+            <div class="col-md-10">
+              <input
+               type="text"
+               required
+               class="form-control"
+               name="Address"
+               [(ngModel)]="request.Address"
+               #AddressInput="ngModel"
+              >
+              <div *ngIf="AddressInput.errors &&(AddressInput.touched || AddressInput.dirty)">
+                  <span style="color: #f00;" [hidden]="!AddressInput.errors.required">this filed is required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <label class="control-label col-md-3" for="Note">Note:</label>
+          <div class="col-md-10">
+            <input
+             type="text"
+             class="form-control"
+             name="note"
+             [(ngModel)]="request.Note"
+             #AddressInput="ngModel"
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="control-label col-md-4" for="Customergroup">Customer Group:</label>
+          <div class="col-md-10">
+            <select  name="selectCustomerGroup" required class="form-control" [(ngModel)]="request.CustomerGroupId">
+              <option value="{{Customergroup.Uid}}" *ngFor="let Customergroup of customerGroup; let i=index">{{Customergroup.ArabicName}}</option>
+            </select>
+          </div>
+
+      </div>
+      </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+              <button  class="btn mt-5" style="color: white; background: darkslateblue;" [disabled]="!f.form.valid">Save</button>
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+    </form>
+</div>
+

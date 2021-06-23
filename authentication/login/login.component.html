@@ -1,0 +1,67 @@
+<div class="auth-login" fxLayoutAlign="start center">
+  <form
+    fxFlex="30"
+    fxFlex.lt-xs="80"
+    fxFlex.lt-sm="80"
+    fxFlex.lt-md="90"
+    [formGroup]="form"
+    (submit)="handelSubmitted()"
+    novalidate
+  >
+    <h1 class="center">
+      <img
+        src="../../../assets/images/Group 36 Copy.png"
+        alt=""
+        title="microtech"
+      />
+    </h1>
+
+    <mat-form-field appearance="outline" class="full-width-field" [dir]="'dir' | translate">
+      <mat-label>{{ "SIDE_MENU.USER_NAME" | translate }}</mat-label>
+      <input type="text" matInput formControlName="userName" placeholder="" />
+      <!-- <mat-error
+        *ngIf="
+          validationError('userEmail', 'email') &&
+          !validationError('userEmail', 'required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error> -->
+      <mat-error *ngIf="validationError('userName', 'required')"> </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field" [dir]="'dir' | translate">
+      <mat-label>{{ "SIDE_MENU.VALID_PASSWORD" | translate }}</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <mat-error *ngIf="validationError('password', 'required')">
+        {{ "REQUIRED_PASSWORD" | translate }}
+      </mat-error>
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [class.spinner]="loading$"
+        [disabled]="loading$"
+      >
+        {{"LOGIN" | translate}}
+      </button>
+    </div>
+  </form>
+</div>

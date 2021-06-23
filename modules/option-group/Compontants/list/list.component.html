@@ -1,0 +1,27 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">group List</h3>
+  </div>
+
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add']">New Group</a>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>ArabicName</th>
+      <th>LatinName</th>
+      <th>action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groups; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{group.ArabicName}}</td>
+        <td>{{group.LatinName}}</td>
+        <td>
+          <a [routerLink]="['Edit/',group.Id]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+  <br>
+  <br>
+ <table class="table">
+   <thead class="thead-dark">
+     <tr>
+       <th>Item No</th>
+       <th>Item name</th>
+       <th>Price</th>
+       <th>Actions</th>
+     </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let itemPrice of itemsPrice; let i=index" >
+         <td>{{i+1}}</td>
+         <td>
+           <select 
+           class="form-control"
+           [(ngModel)]="itemPrice.ItemDefinitionId" 
+           #item="ngModel"
+           name="item"
+           required                        
+          >
+            <option *ngFor="let item of  Items"  value={{item.Uid}}>{{item.LatinName}}</option>
+          </select>
+          <div *ngIf="item.errors &&(item.touched || item.dirty)">
+           <span style="color: #f00;" [hidden]="!item.errors.required">this filed is required</span>  
+         </div> 
+         </td>
+         <td>
+           <input 
+           type="text"
+           required
+           class="form-control" 
+           name="price"
+           [(ngModel)]="itemPrice.Price"
+           #price="ngModel"
+          >
+          <div *ngIf="price.errors &&(price.touched || price.dirty)">
+            <span style="color: #f00;" [hidden]="!price.errors.required">this filed is required</span>  
+          </div>
+         </td>
+         <td>
+           <button type="button" class="btn btn-danger" (click)="delete(i)" *ngIf="itemPrice.Uid==''">  <mat-icon>delete</mat-icon> </button>&nbsp;
+           <button 
+           type="button" 
+           class="btn btn-primary" 
+           (click)="save(itemPrice)" 
+           *ngIf="itemPrice.Uid==''"
+           [disabled]="!itemPrice.Price || !itemPrice.ItemDefinitionId"
+           >  
+           <mat-icon>save</mat-icon> </button>&nbsp;
+           <button 
+           type="button"
+            class="btn btn-primary"
+             (click)="edit(itemPrice)" 
+             *ngIf="itemPrice.Uid !=''"
+             [disabled]="!itemPrice.Price || !itemPrice.ItemDefinitionId"
+             >  <mat-icon>edit</mat-icon> </button>
+         </td>              
+       </tr>
+     </tbody>
+ </table> 
+
+ <button (click)="add()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</button>
+
+ </div>

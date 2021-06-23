@@ -1,0 +1,52 @@
+<form (ngSubmit)="Submit()" #formRoll="ngForm">
+  <mat-card class="example-additional-selection">
+    <h1>Create Roll</h1>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Roll Name</mat-label>
+        <input
+          matInput
+          [(ngModel)]="roleResponse.RoleName"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </mat-form-field>
+      <h1>Authorities</h1>
+      <br />
+      <div>
+        <input type="checkbox" (change)="selectAll($event)" />
+        <label>Select All </label>
+      </div>
+      <section *ngFor="let permission of permissionList; let i = index">
+        <mat-label class="example-margin"></mat-label
+        >{{ permission.CategoryName }}
+        <div
+          style="margin-left: 30px"
+          class="row"
+          *ngFor="let per of permission.Permissions"
+        >
+          <input
+            type="checkbox"
+            (change)="saveCheck(per.PermissionId, $event)"
+            class="example-margin"
+            [checked]="ischecked(per.PermissionId)"
+          />{{ per.Code }}
+        </div>
+      </section>
+      <br />
+      <section>
+        <div *ngIf="isButtonVisible; else elseBlock">
+          <button type="submit" mat-raised-button color="primary">
+            <mat-icon>add</mat-icon>
+            <span class="button-text">Create Roll</span>
+          </button>
+        </div>
+        <ng-template #elseBlock>
+          <button type="submit" mat-raised-button color="primary">
+            <mat-icon>edit</mat-icon>
+            <span class="button-text">Edit Roll</span>
+          </button>
+        </ng-template>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</form>

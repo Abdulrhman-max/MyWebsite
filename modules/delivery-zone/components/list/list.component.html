@@ -1,0 +1,25 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">Delivery Zone List</h3>
+  </div>
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">New Delivery Zone </a>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let zone of zones; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{zone.Code}}</td>
+        <td>{{zone.LatinName}}</td>
+          <td><a [routerLink]="['Edit',zone.Uid]">Edit</a></td>
+      </tr>
+    </tbody>
+</table>
+</div>

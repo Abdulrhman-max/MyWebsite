@@ -1,0 +1,24 @@
+<div class="container">
+    <div>
+      <h4 style="text-align: center;">Customer Group List</h4>
+    </div>
+   <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">Add Customer Group</a>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Code</th>
+        <th>Customer Group Name</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customerGroup of customerGroups;">
+        <td>{{customerGroup.Code}}</td>
+        <td>{{customerGroup.ArabicName}}</td>
+        <td><a [routerLink]="['edit',customerGroup.Uid]">Edit</a></td>
+
+      </tr>
+      </tbody>
+  </table>
+  </div>

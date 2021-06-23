@@ -1,0 +1,86 @@
+<div class="container">
+ <br>
+ <br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Product No</th>
+      <th>Product name</th>
+      <th>price Tag</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pro of ProductPrice; let i=index">
+        <td>{{i+1}}</td>
+        <td>
+          <select 
+          class="form-control"
+          [(ngModel)]="pro.ProductId" 
+          #product="ngModel"
+          name="product"
+          required                        
+         >
+           <option *ngFor="let type of  products"  value={{type.Id}}>{{type.LatinName}}</option>
+         </select>
+         <div *ngIf="product.errors &&(product.touched || product.dirty)">
+          <span style="color: #f00;" [hidden]="!product.errors.required">this filed is required</span>  
+        </div> 
+        </td>
+        <td>
+          <select 
+          class="form-control"
+          [(ngModel)]="pro.PriceTagUid" 
+          #tag="ngModel"
+          name="tag"
+          required                        
+         >
+           <option *ngFor="let tag of  priceTags;let i =index"  value={{tag.Uid}}>{{tag.LatinName}}</option>
+         </select>
+         <div *ngIf="tag.errors &&(tag.touched || tag.dirty)">
+          <span style="color: #f00;" [hidden]="!tag.errors.required">this filed is required</span>  
+        </div> 
+        </td>
+        <td>
+          <input 
+          type="text"
+          required
+          class="form-control" 
+          name="price"
+          [(ngModel)]="pro.Price"
+          #price="ngModel"
+          pattern="^[0-9]*$"
+         >
+         <div *ngIf="price.errors &&(price.touched || price.dirty)">
+           <span style="color: #f00;" [hidden]="!price.errors.required">this filed is required</span>  
+           <span style="color: #f00;" [hidden]="!price.errors.pattern">Invalid Data</span>  
+         </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="delete(i)" *ngIf="pro.Uid==''">  <mat-icon>delete</mat-icon> </button>&nbsp;
+          <button 
+          type="button" 
+          class="btn btn-primary" 
+          (click)="save(pro)" 
+          *ngIf="pro.Uid==''"
+          [disabled]="!pro.Price || !pro.PriceTagUid || !pro.ProductId"
+          >  
+          <mat-icon>save</mat-icon> </button>&nbsp;
+          <button 
+          type="button"
+           class="btn btn-primary"
+            (click)="edit(pro)" 
+            *ngIf="pro.Uid !=''"
+            [disabled]=" !pro.Price || !pro.PriceTagUid || !pro.ProductId "
+
+            >  <mat-icon>edit</mat-icon> </button>
+        </td> 
+       
+      </tr>
+    </tbody>
+</table>
+<button (click)="add()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</button>
+</div>

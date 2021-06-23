@@ -1,0 +1,59 @@
+
+<div class="card">
+  <h1>{{ "SIDE_MENU.DEVICES" | translate }}</h1>
+  <p-toolbar styleClass="p-mb-4">
+
+  </p-toolbar>
+
+  <p-table
+    [value]="List"
+    [paginator]="true"
+    [rows]="rows"
+    [showCurrentPageReport]="true"
+    [(first)]="first"
+    styleClass="p-datatable-responsive-demo"
+    [rowHover]="true"
+    currentPageReportTemplate="{{ 'SHOWING' | translate }} {first} {{
+      'TO' | translate
+    }} {last} {{ 'OF' | translate }} {totalRecords}"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="Name">
+          {{ "NAME" | translate }} <p-sortIcon field="Name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="MachineType">
+          {{ "MACHINETYPE" | translate }} <p-sortIcon field="MachineType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="Reference">
+          {{ "REFERENCE" | translate }}
+          <p-sortIcon field="Reference"></p-sortIcon>
+        </th>
+        <th pSortableColumn="SystemSerialNo">
+          {{ "SYSTEMSERIALNO" | translate }}
+          <p-sortIcon field="SystemSerialNo"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-List>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="List"></p-tableCheckbox>
+        </td>
+        <td>{{ List.Name }}</td>
+        <td>{{ List.MachineType }}</td>
+        <td>{{ List.Reference }}</td>
+        <td>{{ List.SystemSerialNo }}</td>
+        <td>
+          <mat-slide-toggle [checked]="List.State==1?true:false" (change)="Active(List.Uid)"></mat-slide-toggle>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+

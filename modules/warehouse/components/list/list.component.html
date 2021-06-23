@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">warehouses List</h3>
+  </div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let warehouse of warehouses; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{warehouse.Code}}</td>
+        <td>{{warehouse.LatinName}}</td>
+        <td>{{warehouse.Address}}</td>
+        <td>{{warehouse.Phone}}</td>
+        <td>{{warehouse.Email}}</td>
+      </tr>
+    </tbody>
+</table>
+</div>

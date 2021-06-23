@@ -1,0 +1,31 @@
+.main-conent {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  //background-color: $main-color;
+  mat-drawer {
+    width: 20%;
+  }
+
+  mat-drawer-container {
+    height: 80%;
+  }
+
+  mat-drawer-content {
+    padding: 20px;
+  }
+
+  .side-menu {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-color: #f3f4f8;
+    margin-top: 10px;
+    box-shadow: 0 1px 2px #ccc;
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    padding: 20px 15px;
+  }
+}

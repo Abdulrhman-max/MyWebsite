@@ -1,0 +1,35 @@
+<div class="container">
+    <div>
+      <h4 style="text-align: center;">Customers List</h4>
+    </div>
+   <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">Add Customer</a>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Customer Group</th>
+        <th>Gender</th>
+        <th>Address</th>
+        <th>Note</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers;">
+        <td>{{customer.Code}}</td>
+        <td>{{customer.ArabicName}}</td>
+        <td>({{customer.CountryCode}}){{customer.Phone}}</td>
+        <td>{{customer.Email}}</td>
+        <td>{{customer.CustomerGroup.ArabicName}}</td>
+        <td>{{customer.GenderName}}</td>
+        <td>{{customer.Address}}</td>
+        <td>{{customer.Note}}</td>
+        <td><a [routerLink]="['edit',customer.Uid]">Edit</a></td>
+
+      </tr>
+      </tbody>
+  </table>

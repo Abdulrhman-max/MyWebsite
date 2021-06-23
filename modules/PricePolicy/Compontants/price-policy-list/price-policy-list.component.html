@@ -1,0 +1,33 @@
+<div class="container">
+  <div>
+    <h4 style="text-align: center;">Price Policy List</h4>
+  </div>
+
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">New Price Policy</a>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>ArabicName</th>
+      <th>LatinName</th>
+      <th>Lavel</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pericePolicy of pericePolicies; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{pericePolicy.Code}}</td>
+        <td>{{pericePolicy.ArabicName}}</td>
+        <td>{{pericePolicy.LatinName}}</td>
+        <td>{{pericePolicy.LevelName}}</td>
+        <td>{{pericePolicy.TypeName}}</td>
+        <td>{{pericePolicy.Status}}</td>
+        <td><a [routerLink]="['Edit/',pericePolicy.Uid]">Edit</a></td>
+      </tr>
+    </tbody>
+</table>
+</div>

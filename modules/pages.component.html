@@ -1,0 +1,33 @@
+<app-header (toggleButton)="toggleSideMenu()"></app-header>
+
+<div class="main-conent">
+  <!-- <mat-drawer-container
+    fxLayout="column"
+    fxLayoutAlign="space-evenly stretch"
+    class="example-container"
+  >
+    <mat-drawer fxFil mode="side" [opened]="sideBarOpen">
+      <app-side-menu></app-side-menu>
+    </mat-drawer>
+    <mat-drawer-content fxFil>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container> -->
+
+  <div class="p-grid">
+    <div class="p-xs-3 p-lg-2">
+      <div class="side-menu">
+        <app-side-menu></app-side-menu>
+      </div>
+    </div>
+    <div class="p-xs-9 p-lg-10">
+      <div class="content">
+        <app-header-path></app-header-path>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP MODAL CONFIRMS-->
+<app-confirm-delete [display]="display" [data]="data"></app-confirm-delete>

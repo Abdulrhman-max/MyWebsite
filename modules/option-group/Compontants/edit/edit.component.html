@@ -1,0 +1,59 @@
+
+    <form class="form-horizontal" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <label class="control-label col-md-2" for="ArabicName">ArabicName:</label>
+          <div class="col-md-10">
+            <input type="text" required class="form-control" placeholder="Enter ArabicName"
+              [(ngModel)]="request.ArabicName" name="ArabicName" #ArabicName="ngModel">
+            <div *ngIf="ArabicName.errors &&(ArabicName.touched || ArabicName.dirty)">
+              <span style="color: #f00;" [hidden]="!ArabicName.errors.required">this filed is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="control-label col-md-2" for="LatinName">LatinName:</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" required placeholder="Enter LatinName"
+              [(ngModel)]="request.LatinName" name="LatinName" #LatinName="ngModel">
+            <div *ngIf="LatinName.errors &&(LatinName.touched || LatinName.dirty)">
+              <span style="color: #f00;" [hidden]="!LatinName.errors.required">this filed is required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+
+        <div class="col-md-6">
+          <label class="control-label col-md-2">Products:</label>
+          <div class="col-md-10">
+            <ng-multiselect-dropdown
+            [settings]="dropdownSettings"
+            [data]="products"
+            [(ngModel)]="request.Options"
+            #details="ngModel"
+            required
+            name="product"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+          <div *ngIf="details.errors &&(details.touched )">
+            <span style="color: #f00;" [hidden]="!details.errors.required">this filed is required</span>  
+          </div> 
+          </div>
+        </div>
+       
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-1">
+          <button class="btn btn-primary mt-5" [disabled]="f.invalid">Save</button>
+        </div>
+        <div class="col-md-5"></div>
+      </div>
+
+    </form>

@@ -1,0 +1,46 @@
+<mat-card>
+  <mat-card-title>List of Rolls</mat-card-title>
+  <button
+    mat-raised-button
+    color="primary"
+    routerLinkActive="list-item-active"
+    [routerLink]="['add']"
+  >
+    <mat-icon>add</mat-icon>
+    Add New Roll
+  </button>
+  <mat-card-content>
+    <mat-list #rolls fxLayout="column" fxLayoutGap="20px">
+      <mat-card>
+        <div *ngFor="let roll of roleList; let i = index">
+          <div class="row">
+            <h2 class="col-md-6">
+              {{ roll.RoleName }}
+            </h2>
+            <div class="col-md-6">
+              <button [routerLink]="['Edit/',roll.RoleId]" mat-stroked-button>
+                <mat-icon>edit</mat-icon>
+                Edit
+              </button>
+            </div>
+          </div>
+
+          <section>
+            <div>
+              <ul *ngFor="let per of roll.Category">
+                <li>
+                  {{ per.CategoryName }}
+                </li>
+              </ul>
+            </div>
+          </section>
+          <br />
+          <br />
+          <!-- <button [routerLink]="['rolls-list/edit', roll.Id]" mat-stroked-button>
+            edit
+          </button> -->
+        </div>
+      </mat-card>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

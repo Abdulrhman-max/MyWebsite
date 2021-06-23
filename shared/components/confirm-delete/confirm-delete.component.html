@@ -1,0 +1,12 @@
+<p-dialog [(visible)]="display" [closable]="false">
+    <ng-template pTemplate="header">
+        Confirm Delete NAME DELETED ?
+    </ng-template>
+        <ol>
+            <li *ngFor="let item of data">{{item.UserName}}</li>
+        </ol>
+    <p-footer>
+        <button pButton class="p-button-success" (click)="confirmDelete()">Ok</button>
+        <button pButton class="p-button-danger" (click)="canncel()">Cancel</button>
+    </p-footer>
+</p-dialog>

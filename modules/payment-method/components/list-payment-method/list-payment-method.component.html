@@ -1,0 +1,34 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">Payment Methods List</h3>
+  </div>
+
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">New Payment Method</a>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Active</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of paymentMethods; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{payment.LatinName}}</td>
+        <td>{{payment.Type}}</td>
+        <td>{{payment.Status}}</td>
+        <td>
+          <mat-slide-toggle [checked]="payment.Status==1?true:false" (change)="Active(payment.Uid)"></mat-slide-toggle>
+        </td>
+        <td>
+          <a [routerLink]="['Edit/',payment.Uid]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>

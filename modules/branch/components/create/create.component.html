@@ -1,0 +1,330 @@
+<!-- <div class="container mt-5">
+  <h2>New Branch</h2>
+
+  <form class="form-horizontal" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+    <div class="mt-5" *ngIf="request.AddShifts"  style="border: 1px solid #f00;padding: 10px 0px 10px 0px;">
+      <div class="row mt-5" *ngFor="let shift of request.Shifts;let i=index">
+
+        <div class="col-md-4" style="margin: 0px!important;">
+          <label class="control-label col-md-2">To:</label>
+          <div class="col-md-10">
+            <input
+            type="text"
+            required
+            class="form-control"
+            name= "{{'To_' + i}}"
+            placeholder="Enter TO"
+            [(ngModel)]="shift.To"
+            #ToInput="ngModel"
+          >
+          <div *ngIf="ToInput.errors &&(ToInput.touched || FromInput.dirty) && AddShiftsInput">
+            <span style="color: #f00;" [hidden]="!ToInput.errors.required">this filed is required</span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+       <div class="col-md-6 mt-5">
+       <button class="btn btn-success" type="button" (click)="addNewShift()">Add Shift</button>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-1">
+        <button  class="btn btn-primary mt-5" [disabled]="f.invalid && !AddShiftsInput">Save</button>
+      </div>
+      <div class="col-md-5"></div>
+    </div>
+
+  </form>
+</div> -->
+<form (submit)="onSubmit()" #userForm="ngForm">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "LATINNAME" | translate }}</mat-label>
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="request.LatinName"
+          name="LATINNAME"
+          #LatinName="ngModel"
+          required
+        />
+        <mat-error
+          *ngIf="LatinName.invalid && (LatinName.dirty || LatinName.touched)"
+        >
+          {{ "REQIRED_LATINNAME" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "ARABICNAME" | translate }}</mat-label>
+        <input
+          type="text"
+          matInput
+          name="ARABICNAME"
+          [(ngModel)]="request.ArabicName"
+          #arabicName="ngModel"
+          required
+        />
+        <mat-error
+          *ngIf=" arabicName.invalid && (arabicName.dirty || arabicName.touched) "
+        >
+          {{ "REQIRED_ARABICNAME" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+      <mat-label>{{ "OPENFROM" | translate }}</mat-label>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="request.OpenFrom"
+        name="openFrom"
+        #openFrom="ngModel"
+        required
+      />
+      <mat-error
+        *ngIf="openFrom.invalid && (openFrom.dirty || openFrom.touched)"
+      >
+        {{ "REQIRED_OPENFROM" | translate }}
+      </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+      <mat-label>{{ "OPENTO" | translate }}</mat-label>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="request.OpenTo"
+        name="openTo"
+        [ngModelOptions]="{standalone: true}"
+        #OpenTo="ngModel"
+        required
+      />
+      <mat-error
+        *ngIf="OpenTo.invalid && (OpenTo.dirty || OpenTo.touched)"
+      >
+        {{ "REQIRED_OPENTO" | translate }}
+      </mat-error>
+       </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+      <mat-label>{{ "PHONE" | translate }}</mat-label>
+      <input
+        type="tel"
+        matInput
+        name="phoneNumber"
+        [(ngModel)]="request.Phone"
+        #PhoneNumber="ngModel"
+        required
+        placeholder="555-555-1234"
+      />
+      <mat-error
+        *ngIf="
+          PhoneNumber.invalid && (PhoneNumber.dirty || PhoneNumber.touched)
+        "
+      >
+        {{ "VALID_PHONE" | translate }}
+      </mat-error>
+    </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+
+      <mat-label>{{ "SHIFTBELAYTIMEOUT" | translate }}</mat-label>
+      <input
+        type="text"
+        matInput
+        name="ShiftDelayTimeOut"
+        [(ngModel)]="request.ShiftDelayTimeOut"
+        #ShiftDelayTimeOut="ngModel"
+        required
+      />
+      <mat-error
+        *ngIf="ShiftDelayTimeOut.invalid && (ShiftDelayTimeOut.dirty || ShiftDelayTimeOut.touched) "
+      >
+        {{ "REQIRED_ShiftDelayTimeOut" | translate }}
+      </mat-error>
+    </mat-form-field>
+    </div>
+    <div class="p-col-6">
+
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+      <mat-label>{{'DeliveryZones' | translate}}</mat-label>
+      <mat-select [(value)]="DeliveryZonesData"  multiple>
+        <mat-option
+         matInput
+         *ngFor="let delivery of DeliveryZones" [value]="delivery.Uid"
+        >
+        {{delivery.LatinName}}
+      </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+      <mat-label>{{'Warehouses' | translate}}</mat-label>
+      <mat-select  multiple  [(value)]="WarehousesData">
+        <mat-option matInput  *ngFor="let warehouse of Warehouses" [value]="warehouse.Uid">{{warehouse.LatinName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    </div>
+    <div class="p-col-6">
+      <mat-checkbox class="example-margin" name="AddShifts" [(ngModel)]="request.AddShifts" >Check me!</mat-checkbox>
+    </div>
+    <div class="p-col-6">
+      <mat-checkbox class="example-margin" name="ForceInventoryCountAtEndOfDay" [(ngModel)]="request.ForceInventoryCountAtEndOfDay" (change)="eventCheck($event.checked)">Add Shifts!</mat-checkbox>
+    </div>
+
+  </div>
+
+  <hr class="line" />
+  <div class="p-grid" >
+  <div class="p-col-12">
+    <p style="text-align: center;">إضافه الفترات</p>
+    <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-plus"
+    class="p-button-success p-mr-2 btn-form-add"
+    (click)="addNewShift()"
+  ></button>
+  </div>
+</div>
+
+
+        <div class="p-grid" *ngFor="let shift of request.Shifts; let i = index">
+          <div class="p-col-12">
+            <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            type="button"
+            (click)="onRemoveRole(i)"
+            ></button>
+          </div>
+          <br>
+          <div class="p-col-4">
+            <mat-form-field
+            appearance="outline"
+            [dir]="'dir' | translate"
+            class="full-width-field"
+          >
+            <mat-label>{{ "Name" | translate }}</mat-label>
+            <input
+              type="text"
+              matInput
+              ngModel
+              name="{{'Name_' + i}}"
+              [(ngModel)]="shift.ShiftRef"
+              #Name="ngModel"
+              required
+            />
+            <mat-error
+              *ngIf="Name.invalid && (Name.dirty || Name.touched)"
+            >
+              {{ "REQIRED_NAME" | translate }}
+            </mat-error>
+             </mat-form-field>
+          </div>
+          <div class="p-col-4">
+            <mat-form-field
+            appearance="outline"
+            [dir]="'dir' | translate"
+            class="full-width-field"
+          >
+            <mat-label>{{ "From" | translate }}</mat-label>
+            <input
+              type="text"
+              matInput
+              ngModel
+              name="{{'From_' + i}}"
+              [(ngModel)]="shift.From"
+              #From="ngModel"
+              required
+            />
+            <mat-error
+              *ngIf="From.invalid && (From.dirty || From.touched)"
+            >
+              {{ "REQIRED_NAME" | translate }}
+            </mat-error>
+             </mat-form-field>
+          </div>
+          <div class="p-col-4">
+            <mat-form-field
+            appearance="outline"
+            [dir]="'dir' | translate"
+            class="full-width-field"
+          >
+            <mat-label>{{ "To" | translate }}</mat-label>
+            <input
+              type="text"
+              matInput
+              ngModel
+              name="{{'TO_' + i}}"
+              [(ngModel)]="shift.To"
+              #To="ngModel"
+              required
+            />
+            <mat-error
+              *ngIf="To.invalid && (To.dirty || To.touched)"
+            >
+              {{ "REQIRED_NAME" | translate }}
+            </mat-error>
+             </mat-form-field>
+          </div>
+        </div>
+      <button pButton
+              type="submit"
+              label="Save"
+              class="btn-submitted"
+              [disabled]="!userForm.valid"
+              >
+      </button>
+</form>

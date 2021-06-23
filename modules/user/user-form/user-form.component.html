@@ -1,0 +1,173 @@
+<form (submit)="handelSubmittedUser()" #userForm="ngForm">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "NAME" | translate }}</mat-label>
+        <input
+          type="text"
+          matInput
+          ngModel
+          name="userName"
+          #UserName="ngModel"
+          required
+        />
+        <mat-error
+          *ngIf="UserName.invalid && (UserName.dirty || UserName.touched)"
+        >
+          {{ "REQIRED_NAME" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "PHONE" | translate }}</mat-label>
+        <input
+          type="tel"
+          matInput
+          name="phoneNumber"
+          ngModel
+          #PhoneNumber="ngModel"
+          required
+          placeholder="555-555-1234"
+        />
+        <mat-error
+          *ngIf="
+            PhoneNumber.invalid && (PhoneNumber.dirty || PhoneNumber.touched)
+          "
+        >
+          {{ "VALID_PHONE" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "EMAIl" | translate }}</mat-label>
+        <input
+          type="email"
+          matInput
+          name="email"
+          ngModel
+          #Email="ngModel"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          required
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error
+          *ngIf="Email.errors?.required && (Email.dirty || Email.touched)"
+        >
+          {{ "EMAIL_REQUIRED" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="Email.errors?.pattern && (Email.dirty || Email.touched)"
+          >{{ "VALID_EMAIL" | translate }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="p-col-6">
+      <mat-form-field
+        appearance="outline"
+        [dir]="'dir' | translate"
+        class="full-width-field"
+      >
+        <mat-label>{{ "VALID_PASSWORD" | translate }}</mat-label>
+        <input
+          matInput
+          ngModel
+          name="password"
+          #Password="ngModel"
+          required
+          [type]="hide ? 'password' : 'text'"
+        />
+        <mat-error
+          *ngIf="
+            Password.errors?.required && (Password.dirty || Password.touched)
+          "
+        >
+          {{ "REQUIRED_PASSWORD" | translate }}
+        </mat-error>
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <hr class="line" />
+
+    <div class="p-col-12">
+      <p>إضافه صلاحيات</p>
+      <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-plus"
+      class="p-button-success p-mr-2 btn-form-add"
+      (click)="onAddRole()"
+    ></button>
+
+      <div class="roles">
+        <div class="p-grid" *ngFor="let userPermission of selectedPermissions; let i = index">
+          <div class="p-col-12">
+            <button mat-fab
+                  color="warn"
+                  (click)="onRemoveRole(i)"
+                  aria-label="Example icon button with a delete icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div class="p-col-6">
+            <mat-form-field
+              appearance="outline"
+              [dir]="'dir' | translate"
+              class="full-width-field"
+            >
+              <mat-label>{{'ROLE' | translate}}</mat-label>
+              <mat-select [(ngModel)]="userPermission.branch"
+                          [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let branch of branches"
+                   [value]="branch.Uid">{{branch['requestNaems.genName' | translate]}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="p-col-6">
+            <mat-form-field
+              appearance="outline"
+              [dir]="'dir' | translate"
+              class="full-width-field"
+            >
+              <mat-label>{{'BRANCH' | translate}}</mat-label>
+              <mat-select [(ngModel)]="userPermission.role"
+                          [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let branch of branches"
+                    [value]="branch.Uid">{{branch['requestNaems.genName' | translate]}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <button pButton
+              type="submit"
+              label="Save"
+              class="btn-submitted"
+              [disabled]="!userForm.valid"
+              [class.spinner]="loadingSubmitted$"></button>
+    </div>
+  </div>
+</form>

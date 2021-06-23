@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <h3 style="text-align: center;">Price Tags List</h3>
+  </div>
+
+  <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add/0']">New Price Tag</a>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Default</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tag of priceTags; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{tag.LatinName}}</td>
+        <td>{{tag.Default}}</td>
+        <td>
+          <a [routerLink]="['Edit/',tag.Uid]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>

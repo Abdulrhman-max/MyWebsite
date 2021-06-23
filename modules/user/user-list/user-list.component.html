@@ -1,0 +1,82 @@
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        icon="pi pi-plus"
+        class="p-button-success p-mr-2 btn-add"
+        (click)="newUser()"
+      >
+    </button>
+      <button
+        pButton
+        pRipple
+        *ngIf="selecedUsers.length"
+        icon="pi pi-trash"
+        class="p-button-danger"
+        (click)="deleteSelectedUsers()"
+      ></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    [value]="List"
+    [paginator]="true"
+    [rows]="rows"
+    [showCurrentPageReport]="true"
+    [(first)]="first"
+    styleClass="p-datatable-responsive-demo"
+    [rowHover]="true"
+    [(selection)]="selecedUsers"
+    currentPageReportTemplate="{{ 'SHOWING' | translate }} {first} {{
+      'TO' | translate
+    }} {last} {{ 'OF' | translate }} {totalRecords}"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="UserName">
+          {{ "NAME" | translate }} <p-sortIcon field="UserName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="Email">
+          {{ "EMAIl" | translate }} <p-sortIcon field="Email"></p-sortIcon>
+        </th>
+        <th pSortableColumn="PhoneNumber">
+          {{ "PHONE" | translate }}
+          <p-sortIcon field="PhoneNumber"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-List>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="List"></p-tableCheckbox>
+        </td>
+        <td>{{ List.UserName }}</td>
+        <td>{{ List.Email }}</td>
+        <td>{{ List.PhoneNumber }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success p-mr-2 btn-edit"
+            (click)="editLis(List)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            (click)="deleteList(List)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

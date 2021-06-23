@@ -1,0 +1,25 @@
+<div class="container">
+    <div>
+      <h3 style="text-align: center;">Floors List</h3>
+    </div>
+    <a class="btn btn-primary mt-5 mb-5" [routerLink]="['add']">new Floor</a>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Tables</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let floor of floors; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{floor.Name}}</td>
+          <td><a [routerLink]="['/pages/table/list',floor.Id]">Tables</a></td>
+            <td><a [routerLink]="['Edit',floor.Id]">Edit</a></td>
+        </tr>
+      </tbody>
+  </table>
+  </div>

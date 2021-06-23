@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <h2>New Delivery Zone</h2>
+
+  <form class="form-horizontal" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <label class="control-label col-md-3" for="LatinName"> Latin Name :</label>
+        <div class="col-md-10">
+          <input
+           type="text"
+           required
+           class="form-control"
+           name="LatinName"
+           placeholder="Enter LatinName"
+           [(ngModel)]="request.LatinName"
+           #ArabicNameInput="ngModel"
+          >
+          <div *ngIf="ArabicNameInput.errors &&(ArabicNameInput.touched || ArabicNameInput.dirty)">
+            <span style="color: #f00;" [hidden]="!ArabicNameInput.errors.required">this filed is required</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="control-label col-md-3" for="ArabicName">Arabic Name:</label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            required
+            class="form-control"
+            placeholder="Enter ArabicName"
+            [(ngModel)]="request.ArabicName"
+            name="ArabicName"
+            #ArabicName="ngModel"
+          >
+          <div *ngIf="ArabicName.errors &&(ArabicName.touched || ArabicName.dirty)">
+            <span style="color: #f00;" [hidden]="!ArabicName.errors.required">this filed is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <label class="control-label col-md-3" for="Code"> Code :</label>
+        <div class="col-md-10">
+          <input
+           type="text"
+           required
+           class="form-control"
+           name="Code"
+           placeholder="Enter Code"
+           [(ngModel)]="request.Code"
+           #CodeInput="ngModel"
+          >
+          <div *ngIf="CodeInput.errors &&(CodeInput.touched || CodeInput.dirty)">
+            <span style="color: #f00;" [hidden]="!CodeInput.errors.required">this filed is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-1">
+        <button  class="btn btn-primary mt-5" [disabled]="f.invalid">Save</button>
+      </div>
+      <div class="col-md-5"></div>
+    </div>
+  </form>
+</div>
