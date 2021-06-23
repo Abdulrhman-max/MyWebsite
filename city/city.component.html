@@ -1,0 +1,28 @@
+<div class="card">
+    <p>
+        <a routerLink="/pages/AddCity" class="btn btn-primary">Add City</a>
+    </p>
+ 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{language() == "en" ? "Name" : "الأسم"}}</th>
+                <th>{{language() == "en" ? "ArabicName" : "الأسم العربي"}}</th>
+                <th>{{language() == "en" ? "LatinName" : "الأسم الإنجليزي"}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of city">
+                <td>{{c.Name}}</td>
+                <td>{{c.ArabicName}}</td>
+                <td>{{c.LatinName}}</td>
+                <td>
+                    
+        <td>
+            <a [routerLink]="['/pages//editCity/' + c.Id]">Edit</a>
+        </td>
+            
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,71 @@
+
+<div class="p-col-6">
+    <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+    <mat-label>{{ "CITYNAME" | translate }}</mat-label>
+      <input
+        type="tel"
+        matInput
+        name="phoneNumber"
+        [(ngModel)]="data.Name"
+        #CityName="ngModel"
+        required
+        minlength="3"
+        maxlength="20"
+        placeholder="CityName"
+      />
+      <mat-error *ngIf="CityName.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="CityName.errors?.minlength">Your CityName must have at least 3 charcters</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="p-col-6">
+    <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+    <mat-label>{{ "ArabicName" | translate }}</mat-label>
+      <input
+        type="tel"
+        matInput
+        name="phoneNumber"
+        [(ngModel)]="data.ArabicName"
+        #ArabicName="ngModel"
+        required
+        minlength="3"
+        maxlength="20"
+        placeholder="ArabicName"
+      />
+      <mat-error *ngIf="ArabicName.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="ArabicName.errors?.minlength">Your ArabicName must have at least 3 charcters</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="p-col-6">
+    <mat-form-field
+      appearance="outline"
+      [dir]="'dir' | translate"
+      class="full-width-field"
+    >
+    <mat-label>{{ "LATINNAME" | translate }}</mat-label>
+      <input
+        type="tel"
+        matInput
+        name="phoneNumber"
+        [(ngModel)]="data.LatinName"
+        #LatinName="ngModel"
+        required
+        minlength="3"
+        maxlength="20"
+        placeholder="LatinName"
+      />
+      <mat-error *ngIf="LatinName.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="LatinName.errors?.minlength">Your LatinName must have at least 3 charcters</mat-error>
+  </mat-form-field>
+  <button class="btn btn-primary" (click)="UpdateCityData(data)">Save</button>
+  <button class="btn btn-danger" (click)="Delete(data.Id)">Delete</button>  
+</div>
