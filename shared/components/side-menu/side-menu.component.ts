@@ -29,6 +29,11 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   setMenuItems(): void {
     this.items = [
       {
+          label:this.translate.instant('SIDE_MENU.Countries') ,
+          icon: 'pi pi-pw pi-credit-card' ,
+          routerLink: ['./Countries']
+      }  , 
+      {
         label:this.translate.instant('SIDE_MENU.City'),
         icon:'pi pi-pw pi-credit-card' , 
         routerLink:['./City']

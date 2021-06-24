@@ -13,6 +13,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CityComponent } from './city/city.component';
 import { AddCityComponent } from './add-city/add-city.component';
 import { EditCityComponent } from './edit-city/edit-city.component';
+import { CountriesComponent } from './countries/countries.component';
+import { AddCountryComponent } from './add-country/add-country.component';
+import { EditCountryComponent } from './edit-country/edit-country.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -20,7 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, CityComponent, AddCityComponent, EditCityComponent],
+  declarations: [AppComponent, CityComponent, AddCityComponent, EditCityComponent, CountriesComponent, AddCountryComponent, EditCountryComponent],
   imports: [ 
     FormsModule , 
     AppRoutingModule,

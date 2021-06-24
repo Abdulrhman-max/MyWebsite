@@ -66,26 +66,7 @@
       <mat-error *ngIf="LatinName.errors?.required">This field is required</mat-error>
       <mat-error *ngIf="LatinName.errors?.minlength">Your LatinName must have at least 3 charcters</mat-error>
   </mat-form-field>
-  <mat-form-field
-appearance="outline"
-[dir]="'dir' | translate"
-class="full-width-field"
->
-<mat-label>{{ "Country" | translate }}</mat-label>
-      <input
-        type="tel"
-        matInput
-        name="phoneNumber"
-        [(ngModel)]="data.Country"
-        #Country="ngModel"
-        required
-        minlength="3"
-        maxlength="20"
-        placeholder="Country"
-      />
-      <mat-error *ngIf="Country.errors?.required">This field is required</mat-error>
-      <mat-error *ngIf="Country.errors?.minlength">Your Country must have at least 3 charcters</mat-error>
-  </mat-form-field>
+  
 
   <button class="btn btn-primary" (click)="UpdateCityData(data)">Save</button>
   <button class="btn btn-danger" (click)="Delete(data.Id)">Delete</button>  

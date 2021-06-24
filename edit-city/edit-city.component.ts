@@ -22,8 +22,9 @@ export class EditCityComponent implements OnInit {
     
   }
   UpdateCityData(data:any){
-      this.HttpClient.post('Cities/UpdateCity' , { "Id":data.Id, "Name":data.Name , "ArabicName":data.ArabicName , "LatinName":data.LatinName}).subscribe((response) =>{
+      this.HttpClient.post('Cities/UpdateCity' , { "Id":data.Id, "Name":data.Name , "ArabicName":data.ArabicName , "LatinName":data.LatinName , "Country":data.Country}).subscribe((response) =>{
       this.router.navigateByUrl("/pages/City");
+      
       });
       
   }

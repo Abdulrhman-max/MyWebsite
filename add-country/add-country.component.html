@@ -1,19 +1,18 @@
 <div class="container mt-300">
+
     <form class="form-horizontal" #f="ngForm">
-    <input type="text" style="  margin-bottom: 20px;  display: flex;" class="form-control" placeholder="CityName" [(ngModel)]="CityName" #name="ngModel"  name="CityName" required maxlength="20" minlength="3">
+        
+    <input type="text" style="  margin-bottom: 20px;  display: flex;" class="form-control" placeholder="CountryName" [(ngModel)]="Name" #name="ngModel"  name="CountryName" required maxlength="20" minlength="3">
     <div class="alert alert-danger" *ngIf=" name.touched && name.errors?.required">This field is required</div>
-    <div class="alert alert-danger" *ngIf="name.errors?.minlength">Your CityName must have at least 3 characters</div>
-    <input type="text" style=" margin-bottom: 20px; display: flex;" class="form-control" placeholder="ArabicName" [(ngModel)]="ArabicName" #arabicName="ngModel"  name="CityArabicName" required maxlength="20" minlength="3">
+    <div class="alert alert-danger" *ngIf="name.errors?.minlength">Your CountryName must have at least 3 characters</div>
+    <input type="text" style=" margin-bottom: 20px; display: flex;" class="form-control" placeholder="ArabicName" [(ngModel)]="ArabicName" #arabicName="ngModel"  name="CountryArabicName" required maxlength="20" minlength="3">
     <div *ngIf="arabicName.touched && arabicName.errors?.required" class="alert alert-danger">This field is required</div>
     <div *ngIf="arabicName.dirty && arabicName.errors?.minlength" class="alert alert-danger">Please write at least 3 characters</div>
     <input  class="form-control" placeholder="LatinName"  style="margin-bottom: 20px;"required minlength="3" maxlength="20" name="LatinName" [(ngModel)]="LatinName" #latinName="ngModel" />
     <div class="alert alert-danger" *ngIf="latinName.touched && latinName.errors?.required">This field is required</div>
     <div class="alert alert-danger" *ngIf="latinName.dirty && latinName.errors?.minlength">PLease write at least 3 characters</div>
-    <select [(ngModel)]="Country" name="Country" required class="form-control" >
-        <option *ngFor="let country of Country">{{country.Name}}</option>
-        </select>
-        
     
-    <button class="btn btn-primary" [disabled]="f.invalid" (click)="AddCity()">Save</button>
+    
+    <button class="btn btn-primary" [disabled]="f.invalid" (click)="AddCountry()">Save</button>
 </form>
 </div>

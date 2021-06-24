@@ -1,6 +1,6 @@
 <div class="card">
     <p>
-        <a routerLink="/pages/AddCity" class="btn btn-primary">Add City</a>
+        <a routerLink="/pages/AddCountry" class="btn btn-primary">Add Country</a>
     </p>
  
     <table class="table">
@@ -9,7 +9,6 @@
                 <th>{{language() == "en" ? "Name" : "الأسم"}}</th>
                 <th>{{language() == "en" ? "ArabicName" : "الأسم العربي"}}</th>
                 <th>{{language() == "en" ? "LatinName" : "الأسم الإنجليزي"}}</th>
-                <th>{{language() == "en" ? "Country" : "دولة"}}</th>
                 <th></th>
             </tr>
         </thead>
@@ -18,11 +17,10 @@
                 <td>{{c.Name}}</td>
                 <td>{{c.ArabicName}}</td>
                 <td>{{c.LatinName}}</td>
-                <td>{{c.Country}}</td>
                 <td>
                     
         <td>
-            <a [routerLink]="['/pages//editCity/' + c.Id]">Edit</a>
+            <a [routerLink]="['/pages//EditCountry/' + c.Id]">Edit</a>
         </td>
             
         </tbody>

@@ -5,6 +5,9 @@ import { CityComponent } from '../city/city.component';
 import { GuardRouteService } from '../core/guards/auth-guard';
 import { PagesComponent } from './pages.component';
 import { EditCityComponent } from '../edit-city/edit-city.component';
+import { CountriesComponent } from '../countries/countries.component';
+import { AddCountryComponent } from '../add-country/add-country.component';
+import { EditCountryComponent } from '../edit-country/edit-country.component';
 
 const routes: Routes = [
   {
@@ -105,7 +108,10 @@ const routes: Routes = [
       },
       {path:'City' , component: CityComponent } , 
       {path:'AddCity' , component:AddCityComponent} ,
-      {path:'editCity/:id' , component: EditCityComponent} 
+      {path:'editCity/:id' , component: EditCityComponent} ,
+      {path:'Countries' , component: CountriesComponent}  ,
+      {path:'AddCountry' , component: AddCountryComponent}  ,
+      {path:'EditCountry/:id' , component: EditCountryComponent} ,
 
     ],
   },
